@@ -1,0 +1,24 @@
+{
+  "name": "sboot",
+  "version": "1.0.0",
+  "description": "A CLI tool to setup Spring boot project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/javatechy/spring-boot-cli.git"
+  },
+  "keywords": [
+    "spring",
+    "boot",
+    "cli"
+  ],
+  "author": "Deepak Kumar <deepak.kumar.iet@gmail.com> (https://javatechy.github.io)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/javatechy/spring-boot-cli/issues"
+  },
+  "homepage": "https://github.com/javatechy/spring-boot-cli#readme"
+}
