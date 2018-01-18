@@ -1,24 +1,30 @@
 {
-  "name": "sboot",
-  "version": "1.0.1",
-  "description": "A CLI tool to setup Spring boot project",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/javatechy/spring-boot-cli.git"
-  },
-  "keywords": [
-    "spring",
-    "boot",
-    "cli"
-  ],
-  "author": "Deepak Kumar <deepak.kumar.iet@gmail.com> (https://javatechy.github.io)",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/javatechy/spring-boot-cli/issues"
-  },
-  "homepage": "https://github.com/javatechy/spring-boot-cli#readme"
+	"name": "sboot",
+	"version": "1.0.2",
+	"description": "A CLI tool to setup Spring boot project",
+	"main": "cli.js",
+	"bin": {
+		"sboot": "cli.js"
+	},
+	"scripts": {
+		"start": "budo index.js",
+		"test": "node test.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/javatechy/spring-boot-cli.git"
+	},
+	"keywords": [
+		"spring",
+		"spring-boot",
+		"springboot",
+		"boot",
+		"cli"
+	],
+	"author": "Deepak Kumar <deepak.kumar.iet@gmail.com> (https://javatechy.github.io)",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/javatechy/spring-boot-cli/issues"
+	},
+	"homepage": "https://github.com/javatechy/spring-boot-cli#readme"
 }
