@@ -1,4 +1,5 @@
 # spring-boot-cli
+A CLI tool to setup Spring boot project
 
 Installation Steps
 ------------------
