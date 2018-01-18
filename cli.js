@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 var fs = require('fs');
 var path = require('path');
+var readline = require('readline');
+var readInput = readline.createInterface(process.stdin, process.stdout);
 
 // Location of the script
 var scriptLoc = process.argv[1];
@@ -18,6 +20,11 @@ case "init":
 	console.log("[init]setting up project");
 	break;
 }
+
+readInput.question('Please enter groupId? ', (answer) => {
+	  console.log('groupId => ', answer);
+	  readInput.close();
+	  });
 
 // To remove
 fs.readFile(path.resolve(__dirname, 'bears.txt'), function(err, data) {
