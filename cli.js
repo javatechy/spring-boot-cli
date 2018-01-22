@@ -12,8 +12,12 @@ var fileUtils = require('./fileUtils.js');
 var operationArg = process.argv[2];
 
 // git clone https://github.com/javatechy/spring-boot-template.git .
-fileUtils.foo();
-console.log(process.argv[2]);
+fileUtils.createDir("/Users/deepak/Desktop/temp");
+fileUtils.createFile("/Users/deepak/Desktop/temp/abc.txt");
+fileUtils.writeDataInFile("/Users/deepak/Desktop/temp/abc.txt","writeDataInFile");
+var content = fileUtils.replaceContent("${hel}","hesl","peace");
+
+console.log(process.argv[2]+"content=>"+content);
 
 switch (operationArg) {
 case "init":
@@ -21,7 +25,7 @@ case "init":
 	break;
 }
 
-readInput.question('Please enter groupId? ', (answer) => {
+readInput.question('Please enter groupId ? ', (answer) => {
 	  console.log('groupId => ', answer);
 	  readInput.close();
 	  });
