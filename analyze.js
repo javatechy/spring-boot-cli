@@ -41,21 +41,18 @@ module.exports = {
 		});
 
 		console.table(jars);
-	//	console.log(" jars - > " + JSON.stringify(jars));// , null, 4));
-		// TODO: create a html
-		// TODO: Open in a browser
+		// console.log(" jars - > " + JSON.stringify(jars));// , null, 4));
 		console.log("Total no of jars " + jars.length);
 
-		
 		var html = fs.readFileSync('./index.html') + '';
 
 		var data = '';
-		
+
 		for (var i = 0; i < jars.length; i++) {
 			data += "<tr><td>" + jars[i].name + "</td><td>" + jars[i].size
 					+ "</td><td>" + jars[i].sizeInBytes + "</td></tr>";
 		}
-		
+
 		html = html.replace('${data}', data);
 		html = html.replace('${total_jars}', jars.length);
 		html = html.replace('${total_jar_size}', this
