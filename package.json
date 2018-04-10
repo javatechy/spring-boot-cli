@@ -1,6 +1,6 @@
 {
 	"name": "sboot",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "A CLI tool to setup Spring boot project",
 	"main": "cli.js",
 	"bin": {
@@ -26,5 +26,8 @@
 	"bugs": {
 		"url": "https://github.com/javatechy/spring-boot-cli/issues"
 	},
-	"homepage": "https://github.com/javatechy/spring-boot-cli#readme"
+	"homepage": "https://github.com/javatechy/spring-boot-cli#readme",
+	"dependencies": {
+		"console.table": "^0.10.0"
+	}
 }

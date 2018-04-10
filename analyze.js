@@ -2,6 +2,7 @@
 var fs = require("fs");
 var sys = require('util')
 var exec = require('child_process').execSync;
+const cTable = require('console.table');
 
 function puts(error, stdout, stderr) {
 	sys.puts(stdout)
@@ -27,7 +28,6 @@ module.exports = {
 		var output = exec(command) + '';
 		var lines = output.split('\n');
 		var jars = [];
-		// create object array of jars
 		for (var i = 0; i < lines.length; i++) {
 			var myArray = lines[i].split(" ");
 			var jarSize = new Object();
@@ -36,11 +36,13 @@ module.exports = {
 			jarSize.name = myArray[1];
 			jars.push(jarSize);
 		}
-
+		// sort jar list in decreasing order
 		jars = jars.sort(function(one, two) {
 			return two.sizeInBytes - one.sizeInBytes;
 		});
-		console.log(" jars - > " + JSON.stringify(jars, null, 4));
+
+		console.table(jars);
+		// console.log(" jars - > " + JSON.stringify(jars, null, 4));
 		console.log("Total no of jars " + jars.length);
 	},
 
