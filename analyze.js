@@ -9,6 +9,7 @@ module.exports = {
 
 	analyze : function(loc) {
 
+		const fileStats = fs.statSync(loc);
 		console.log("Ananlyzing the  jar file => " + loc);
 
 		var command = "jar tvf "
@@ -28,7 +29,7 @@ module.exports = {
 		for (var i = 0; i < lines.length; i++) {
 			var myArray = lines[i].split(" ");
 			var jarSize = new Object();
-			totalJarSize += parseInt(myArray[0]);
+			totalJarSize = +totalJarSize + +myArray[0];
 			jarSize.size = this.getBytesWithUnit(myArray[0]);
 			jarSize.sizeInBytes = myArray[0];
 			jarSize.name = myArray[1];
@@ -58,6 +59,8 @@ module.exports = {
 		html = html.replace('${total_jar_size}', this
 				.getBytesWithUnit(totalJarSize));
 		html = html.replace('${build_name}', loc);
+		html = html.replace('${build_original_size}', this
+				.getBytesWithUnit(fileStats.size));
 
 		http.createServer(function(request, response) {
 			response.writeHeader(200, {
