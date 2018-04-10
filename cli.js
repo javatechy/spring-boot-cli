@@ -14,12 +14,12 @@ var analyzeFile = require('./analyze.js');  // reading analyze utils
 // Operation to perform
 var operationArg = process.argv[2];
 
-console.log("Current File running => "+scriptLoc);
-console.log("Current File templateJson => "+request.temp);
-console.log("Current Path => "+ __dirname);
+// console.log("Current File running => "+scriptLoc);
+// console.log("Current File templateJson => "+request.temp);
+// console.log("Current Path => "+ __dirname);
 
-var content = fileUtils.replaceContent("${hel}","hel","peace");
-console.log(process.argv[2]+"content=>"+content);
+// var content = fileUtils.replaceContent("${hel}","hel","peace");
+// console.log(process.argv[2]+"content=>"+content);
 
 switch (operationArg) {
 case "init":
@@ -29,6 +29,11 @@ case "init":
 	fileUtils.writeDataInFile("/Users/deepak/Desktop/temp/abc.txt","writeDataInFile");
 
 	console.log("[init]setting up project");
+	readInput.question('Please enter groupId ? ', (answer) => {
+		  console.log('groupId => ', answer);
+		  readInput.close();
+		  });
+
 	break;
 case "analyze":
 	console.log("[init]Analyzing ur project"+ process.argv[3]);
@@ -36,15 +41,3 @@ case "analyze":
 	break;
 
 }
-
-readInput.question('Please enter groupId ? ', (answer) => {
-	  console.log('groupId => ', answer);
-	  readInput.close();
-	  });
-
-// To remove
-fs.readFile(path.resolve(__dirname, 'bears.txt'), function(err, data) {
-	var bears = data.toString().split('\n');
-	var bear = bears[Math.floor(Math.random() * bears.length)];
-	console.log(bear);
-});

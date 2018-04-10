@@ -34,7 +34,6 @@ module.exports = {
 			jarSize.sizeInBytes = myArray[0];
 			jarSize.name = myArray[1];
 			jars.push(jarSize);
-			console.log(totalJarSize);
 		}
 		// sort jar list in decreasing order
 		jars = jars.sort(function(one, two) {
@@ -68,7 +67,9 @@ module.exports = {
 			});
 			response.write(html);
 			response.end();
-		}).listen(8000);
+		}).listen(1234);
+
+		console.log("Server is running on port 1234 ....");
 	},
 
 	getBytesWithUnit : function(bytes) {
