@@ -2,12 +2,8 @@
 var fs = require("fs");
 var sys = require('util')
 var exec = require('child_process').execSync;
+var http = require('http');
 const cTable = require('console.table');
-
-function puts(error, stdout, stderr) {
-	sys.puts(stdout)
-	return stdout;
-}
 
 module.exports = {
 
@@ -25,16 +21,19 @@ module.exports = {
 		}
 
 		// Execute the command to find all jars
-		var output = exec(command) + '';
+		var output = exec(command).toString();
 		var lines = output.split('\n');
 		var jars = [];
+		var totalJarSize = 0;
 		for (var i = 0; i < lines.length; i++) {
 			var myArray = lines[i].split(" ");
 			var jarSize = new Object();
+			totalJarSize += parseInt(myArray[0]);
 			jarSize.size = this.getBytesWithUnit(myArray[0]);
 			jarSize.sizeInBytes = myArray[0];
 			jarSize.name = myArray[1];
 			jars.push(jarSize);
+			console.log(totalJarSize);
 		}
 		// sort jar list in decreasing order
 		jars = jars.sort(function(one, two) {
@@ -42,8 +41,34 @@ module.exports = {
 		});
 
 		console.table(jars);
-		// console.log(" jars - > " + JSON.stringify(jars, null, 4));
+	//	console.log(" jars - > " + JSON.stringify(jars));// , null, 4));
+		// TODO: create a html
+		// TODO: Open in a browser
 		console.log("Total no of jars " + jars.length);
+
+		
+		var html = fs.readFileSync('./index.html') + '';
+
+		var data = '';
+		
+		for (var i = 0; i < jars.length; i++) {
+			data += "<tr><td>" + jars[i].name + "</td><td>" + jars[i].size
+					+ "</td><td>" + jars[i].sizeInBytes + "</td></tr>";
+		}
+		
+		html = html.replace('${data}', data);
+		html = html.replace('${total_jars}', jars.length);
+		html = html.replace('${total_jar_size}', this
+				.getBytesWithUnit(totalJarSize));
+		html = html.replace('${build_name}', loc);
+
+		http.createServer(function(request, response) {
+			response.writeHeader(200, {
+				"Content-Type" : "text/html"
+			});
+			response.write(html);
+			response.end();
+		}).listen(8000);
 	},
 
 	getBytesWithUnit : function(bytes) {
