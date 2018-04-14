@@ -22,5 +22,12 @@ module.exports = {
 	// Replace a template string by another string
 	replaceContent : function(content, key, value) {
 		return content.replace("${" + key + "}", value);
+	},
+
+	// Get the file size
+	getFileSize : function(path) {
+		const fileStats = fs.statSync(path);
+		console.log("Getting file size" + fileStats.size);
+		return fileStats.size;
 	}
 };
