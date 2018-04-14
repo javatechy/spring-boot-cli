@@ -3,8 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>${build_type} Build Analysis</title>
-<meta name="description"
-	content="Analysis of build">
+<meta name="description" content="Analysis of build">
 
 <link
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
@@ -21,12 +20,9 @@
 <body style="margin: 40px auto">
 	<div class="container">
 		<div class="row header" style="text-align: center; color: green">
-			<h2>Analysis of your build : ${build_name} </h2>
-			<h3>Total Jars - ${total_jars}</h3>
+			<h2>Analysis of your build : ${build_name}</h2>
+			<h3>Total External Jars - ${total_jars} [ ${total_jar_size} ]</h3>
 			<h3>Total Build Size - ${build_original_size}</h3>
-			<h3>Total Sum of all external jars in your project-
-				${total_jar_size}</h3>
-
 		</div>
 
 		<table id="myTable" class="table table-striped">

@@ -37,12 +37,13 @@ module.exports = {
 
 		for (var i = 0; i < lines.length; i++) {
 			var myArray = lines[i].split(" ");
-			var jarSize = new Object();
+			var jar = new Object();
 			totalJarSize = +totalJarSize + +myArray[0];
-			jarSize.size = cu.convertBytes(myArray[0]);
-			jarSize.sizeInBytes = myArray[0];
-			jarSize.name = myArray[1];
-			jars.push(jarSize);
+			jar.size = cu.convertBytes(myArray[0]);
+			jar.sizeInBytes = myArray[0];
+			jar.name = myArray[1];
+			if (jar.name != undefined)
+				jars.push(jar);
 		}
 
 		// sort jar list in decreasing order
@@ -60,9 +61,8 @@ module.exports = {
 		var data = '';
 
 		for (var i = 0; i < jars.length; i++) {
-			if (jars[i].name != undefined)
-				data += "<tr><td>" + jars[i].name + "</td><td>" + jars[i].size
-						+ "</td><td>" + jars[i].sizeInBytes + "</td></tr>";
+			data += "<tr><td>" + jars[i].name + "</td><td>" + jars[i].size
+					+ "</td><td>" + jars[i].sizeInBytes + "</td></tr>";
 		}
 
 		html = fu.replace(html, 'data', data);

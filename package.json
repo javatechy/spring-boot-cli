@@ -1,7 +1,7 @@
 {
 	"name": "sboot",
-	"version": "1.0.6",
-	"description": "A CLI tool to setup Spring boot project",
+	"version": "1.0.8",
+	"description": "A CLI tool to setup Spring boot project & analyze a build(jar/war)",
 	"main": "cli.js",
 	"bin": {
 		"sboot": "cli.js"
@@ -16,6 +16,9 @@
 	},
 	"keywords": [
 		"spring",
+		"java jar analysis",
+		"javajaranalysis",
+		"jaranalysis",
 		"spring-boot",
 		"springboot",
 		"boot",
