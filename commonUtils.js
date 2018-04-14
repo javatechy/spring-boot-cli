@@ -1,12 +1,18 @@
-var fs = require("fs");
+var http = require('http');
+const cTable = require('console.table');
 
 module.exports = {
 
 	// print a content of a file
 	print : function(string) {
-		console.log(string);
+		// console.log(string);
+	},
+	
+	printTable : function(tableContent) {
+		console.table(tableContent);
 	},
 
+	// convert bytes into MB/GB/TB
 	getBytesWithUnit : function(bytes) {
 		if (isNaN(bytes)) {
 			return;
@@ -25,5 +31,19 @@ module.exports = {
 			bytes = bytes.toFixed(3);
 		}
 		return bytes + units[i];
+	},
+
+	// Run a server on a given port
+	runServer : function(htmlContent, port) {
+		// run a server
+		http.createServer(function(request, response) {
+			response.writeHeader(200, {
+				"Content-Type" : "text/html"
+			});
+			response.write(htmlContent);
+			response.end();
+		}).listen(port);
+
 	}
+
 };
