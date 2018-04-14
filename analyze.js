@@ -1,25 +1,23 @@
 #!/usr/bin/env node
-var fs = require("fs");
-var sys = require('util')
 var exec = require('child_process').execSync;
 var path = require("path");
-var fileUtils = require('./fileUtils.js'); // reading file utils
-var common = require('./commonUtils.js'); // reading file utils
+var fu = require('./fileUtils.js'); // reading file utils
+var cu = require('./commonUtils.js'); // reading common utils
 var currentExecutingPath = process.cwd();
 var htmlPath = path.resolve(path.join(__dirname, "ui_html",
-		"analyze_template.html"));
+		"build_analysis_template.html"));
 
 module.exports = {
 
 	analyze : function(loc) {
-		var currentDir = exec("pwd").toString();
-		console.log("Ananlyzing the  jar file => " + loc);
+
+		cu.debug("Ananlyzing the  jar file => " + loc);
 
 		if (loc.indexOf(currentExecutingPath) >= 0) {
-			common.print("Not an absolute path");
-		}else{
-			common.print("Not an absolute path");
-			loc = currentExecutingPath+ "/"+ loc
+			cu.debug("Not an absolute path");
+		} else {
+			cu.debug("Not an absolute path");
+			loc = currentExecutingPath + "/" + loc
 		}
 
 		var command = "jar tvf "
@@ -41,7 +39,7 @@ module.exports = {
 			var myArray = lines[i].split(" ");
 			var jarSize = new Object();
 			totalJarSize = +totalJarSize + +myArray[0];
-			jarSize.size = common.getBytesWithUnit(myArray[0]);
+			jarSize.size = cu.convertBytes(myArray[0]);
 			jarSize.sizeInBytes = myArray[0];
 			jarSize.name = myArray[1];
 			jars.push(jarSize);
@@ -52,12 +50,12 @@ module.exports = {
 			return two.sizeInBytes - one.sizeInBytes;
 		});
 
-		common.printTable(jars);
+		cu.printTable(jars);
 
 		// console.log(" jars - > " + JSON.stringify(jars));// , null, 4));
 		console.log("Total no of jars " + jars.length);
 
-		var html = fs.readFileSync(htmlPath) + '';
+		var html = fu.readFileContent(htmlPath);
 
 		var data = '';
 
@@ -67,20 +65,20 @@ module.exports = {
 						+ "</td><td>" + jars[i].sizeInBytes + "</td></tr>";
 		}
 
-		html = html.replace('${data}', data);
-		html = html.replace('${total_jars}', jars.length);
-		html = html.replace('${total_jar_size}', common
-				.getBytesWithUnit(totalJarSize));
-		html = html.replace('${build_name}', loc);
-		html = html.replace('${build_original_size}', common
-				.getBytesWithUnit(fileUtils.getFileSize(loc)));
+		html = fu.replace(html, 'data', data);
+		html = fu.replace(html, 'total_jars', jars.length);
+		html = fu
+				.replace(html, 'total_jar_size', cu.convertBytes(totalJarSize));
+		html = fu.replace(html, 'build_name', fu.getFileName(loc));
+		html = fu.replace(html, 'build_type', fu.getFileExtension(loc));
 
-		console.log("Current Path => " + __dirname + "  ..... " + currentDir
-				+ " .. " + currentExecutingPath);
-		console.log("Current LOC => " + loc);
-		
+		html = fu.replace(html, 'build_original_size', cu.convertBytes(fu
+				.getFileSize(loc)));
 
-				common.runServer(html, 1234);
+		cu.debug("Current Path => " + __dirname + "  ..... " + " .. "
+				+ currentExecutingPath);
+		cu.debug("Current LOC => " + loc);
+		cu.runServer(html, 1234);
 		console.log("Server is running on port 1234 ....");
 	}
 };

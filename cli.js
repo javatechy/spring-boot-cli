@@ -36,7 +36,8 @@ case "init":
 
 	break;
 case "analyze":
-	console.log("[init]Analyzing ur project"+ process.argv[3]);
+case "-a":
+	console.log("\n\n Analyzing ...  \n ");
 	analyzeFile.analyze(process.argv[3]);
 	break;
 

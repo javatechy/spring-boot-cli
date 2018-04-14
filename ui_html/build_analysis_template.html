@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Example of Employee Table with twitter bootstrap</title>
+<title>${build_type} Build Analysis</title>
 <meta name="description"
-	content="Creating a Employee table with Twitter Bootstrap. Learn with example of a Employee Table with Twitter Bootstrap.">
+	content="Analysis of build">
+
 <link
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -12,7 +13,6 @@
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <link rel="stylesheet"
 	href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
-</style>
 <script type="text/javascript"
 	src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript"
@@ -21,7 +21,7 @@
 <body style="margin: 40px auto">
 	<div class="container">
 		<div class="row header" style="text-align: center; color: green">
-			<h2>Jar/War analysis of your build (${build_name})</h2>
+			<h2>Analysis of your build : ${build_name} </h2>
 			<h3>Total Jars - ${total_jars}</h3>
 			<h3>Total Build Size - ${build_original_size}</h3>
 			<h3>Total Sum of all external jars in your project-

@@ -5,15 +5,29 @@ module.exports = {
 
 	// print a content of a file
 	print : function(string) {
+		console.log(string);
+	},
+
+	// print a content of a file
+	debug : function(string) {
 		// console.log(string);
 	},
-	
+
 	printTable : function(tableContent) {
 		console.table(tableContent);
 	},
-
+	
+	// Convert into camel case
+	toTitleCase : function (str) {
+		str = str.toLowerCase().split(' ');
+		for (var i = 0; i < str.length; i++) {
+			str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
+		}
+		return str.join(' ');
+	},
+	
 	// convert bytes into MB/GB/TB
-	getBytesWithUnit : function(bytes) {
+	convertBytes : function(bytes) {
 		if (isNaN(bytes)) {
 			return;
 		}
