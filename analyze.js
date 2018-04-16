@@ -42,6 +42,7 @@ module.exports = {
 			jar.size = cu.convertBytes(myArray[0]);
 			jar.sizeInBytes = myArray[0];
 			jar.name = myArray[1];
+			jar.version = this.findJarVer(myArray[1]);
 			if (jar.name != undefined)
 				jars.push(jar);
 		}
@@ -61,8 +62,9 @@ module.exports = {
 		var data = '';
 
 		for (var i = 0; i < jars.length; i++) {
-			data += "<tr><td>" + jars[i].name + "</td><td>" + jars[i].size
-					+ "</td><td>" + jars[i].sizeInBytes + "</td></tr>";
+			data += "<tr><td>" + jars[i].name + "</td><td>" + jars[i].version
+					+ "</td><td>" + jars[i].sizeInBytes + "</td><td>"
+					+ jars[i].size + "</td></tr>";
 		}
 
 		html = fu.replace(html, 'data', data);
@@ -78,7 +80,14 @@ module.exports = {
 		cu.debug("Current Path => " + __dirname + "  ..... " + " .. "
 				+ currentExecutingPath);
 		cu.debug("Current LOC => " + loc);
-		cu.runServer(html, 1234);
-		console.log("Server is running on port 1234 ....");
+		cu.runServer(html, 2000);
+		console.log("Server is running on port 2000 ....");
+	},
+
+	findJarVer : function(str) {
+		str = str + '';
+		str = str.substring(str.lastIndexOf("-") + 1, str.lastIndexOf(".jar"));
+		return str;
 	}
+
 };
