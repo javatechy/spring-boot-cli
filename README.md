@@ -1,5 +1,5 @@
-# Analysis of build
-A CLI tool to setup Spring boot project and analyze builds (jars/wars)
+# Sboot -  Spring boot project setup and analyze builds - jar/war
+A CLI tool to setup Spring boot project(in progress) and analyze builds (jars/wars)
 
 Installation Steps
 ------------------
