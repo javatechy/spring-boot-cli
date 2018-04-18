@@ -6,6 +6,7 @@ var cu = require('./commonUtils.js'); // reading common utils
 var currentExecutingPath = process.cwd();
 var htmlPath = path.resolve(path.join(__dirname, "ui_html",
 		"build_analysis_template.html"));
+var opn = require('opn');
 
 module.exports = {
 
@@ -82,6 +83,7 @@ module.exports = {
 		cu.debug("Current LOC => " + loc);
 		cu.runServer(html, 2000);
 		console.log("Server is running on port 2000 ....");
+		opn('http://localhost:2000');
 	},
 
 	findJarVer : function(str) {

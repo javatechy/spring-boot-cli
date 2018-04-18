@@ -1,4 +1,4 @@
-# spring-boot-cli
+# Analysis of build
 A CLI tool to setup Spring boot project
 
 Installation Steps
