@@ -1,28 +1,34 @@
 # Analysis of build
-A CLI tool to setup Spring boot project
+A CLI tool to setup Spring boot project and analyze builds (jars/wars)
 
 Installation Steps
 ------------------
-* Initialize npm 
+* npm install -g sboot 
 
 ```
-npm init
+npm install -g sboot
 ```
 
-* Check config
+* To analyze an application run this command:
 
 ```
-npm config ls 
-npm config ls  -l
+sboot -a my-test.jar
+	  OR
+sboot -a my-test.war
 ```
+This will open analysis of all your jars that are used in your project with version  and size details in tabular form.
 
-* Publish 
+**Features:**
+ 
+* Tabular representation of the jars used in the project.
+* Sorting in table
+* Searching
 
-```
-npm adduser
-npm publish
-```
+Sample Screenshot :
 
+![Alt text](/screenshots/sboot_build_analysis.png "Optional Title")
+
+ 
 
 
 
