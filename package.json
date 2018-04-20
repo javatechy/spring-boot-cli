@@ -32,6 +32,7 @@
 	"homepage": "https://github.com/javatechy/spring-boot-cli#readme",
 	"dependencies": {
 		"console.table": "^0.10.0",
+		"express": "^4.16.3",
 		"npm-path": "^2.0.4",
 		"opn": "^5.3.0"
 	}

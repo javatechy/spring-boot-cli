@@ -8,7 +8,7 @@ var readInput = readline.createInterface(process.stdin, process.stdout);
 
 // Location of the script
 var scriptLoc = process.argv[1];
-var fileUtils = require('./fileUtils.js'); // reading file utils
+var fileUtils = require('./utils/fileUtils.js'); // reading file utils
 var analyzeFile = require('./analyze.js');  // reading analyze utils
 
 // Operation to perform

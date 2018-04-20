@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 var exec = require('child_process').execSync;
 var path = require("path");
-var fu = require('./fileUtils.js'); // reading file utils
-var cu = require('./commonUtils.js'); // reading common utils
+var fu = require('./utils/fileUtils.js'); // reading file utils
+var cu = require('./utils/commonUtils.js'); // reading common utils
 var currentExecutingPath = process.cwd();
 var htmlPath = path.resolve(path.join(__dirname, "ui_html",
 		"build_analysis_template.html"));
