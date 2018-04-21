@@ -9,16 +9,14 @@ var request = require('./templateConfig.json');
 var scriptLoc = process.argv[1];
 var fileUtils = require('./utils/fileUtils.js'); // reading file utils
 var analyzeFile = require('./analyze.js');  // reading analyze utils
+var intializerFile = require('./initialzer.js');  // reading analyze utils
 
 // Operation to perform
 var operationArg = process.argv[2];
 
 switch (operationArg) {
 case "init":
-	// git clone https://github.com/javatechy/spring-boot-template.git .
-	fileUtils.createDir("/Users/deepak/Desktop/temp");
-	fileUtils.createFile("/Users/deepak/Desktop/temp/abc.txt");
-	fileUtils.writeDataInFile("/Users/deepak/Desktop/temp/abc.txt","writeDataInFile");
+	intializerFile.start();
 	console.log("[init]setting up project");
 	break;
 case "analyze":
