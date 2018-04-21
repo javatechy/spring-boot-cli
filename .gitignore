@@ -2,6 +2,7 @@
 /backend/codegen_ui/
 /backend/target/
 /backend/.settings/
+.settings/
 /backend/.project
 /backend/.classpath
 /backend/bin/

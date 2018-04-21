@@ -1,2 +1,2 @@
-ng build --output-path=../sboot/codegen_ui/
+ng build --output-path=../backend/codegen_ui/
 
