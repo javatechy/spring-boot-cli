@@ -1,0 +1,63 @@
+{
+	"controllers": [
+		{
+			"docsComment": "${controllerDocComment}",
+			"name": "${controllerName}"
+		}
+	],
+	"database": {
+		"databaseType": "${databaseType}",
+		"isDatabaseEnabled": true,
+		"password": "${password}",
+		"userName": "${userName}"
+	},
+	"deployment": {
+		"isDockerEnabled": true
+	},
+	"entities": [
+		{
+			"fields": [
+				{
+					"dbName": "string",
+					"isNullable": true,
+					"isUnique": true,
+					"name": "string",
+					"type": "string"
+				}
+			],
+			"name": "string",
+			"primaryKey": "string"
+		}
+	],
+	"jars": [
+		{
+			"name": "string",
+			"version": "string"
+		}
+	],
+	"logging": {
+		"isEnabledLog": true,
+		"loggingFile": "string",
+		"rotationSize": "string"
+	},
+	"properties": {
+		"applicationClassName": "${applicationClassName}",
+		"artifactId": "${artifactId}",
+		"description": "${description}",
+		"developerName": "${developerName}",
+		"groupId": "${groupId}",
+		"isActuatorEnabled": true,
+		"isConstantFile": true,
+		"isGlobalExceptionEnabled": true,
+		"isLombokEnabled": true,
+		"language": "java",
+		"name": "${name}",
+		"springVerison": "2.0.0"
+	},
+	"swagger": {
+		"apiDocName": "string",
+		"developerEmailId": "string",
+		"isEnabled": true
+	},
+	"temp": "hellp"
+}

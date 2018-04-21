@@ -1,0 +1,63 @@
+<div style="text-align:center">
+  <h1>Code Generator !!</h1><br>
+
+  <mat-checkbox class="example-margin" [(ngModel)]="this.request.properties.isActuatorEnabled">Actuator
+  </mat-checkbox>
+  <mat-checkbox class="example-margin" [(ngModel)]="this.request.properties.isConstantFile">Constant File
+  </mat-checkbox>
+  <mat-checkbox class="example-margin" [(ngModel)]="this.request.properties.isGlobalExceptionEnabled">Global
+    Exception Handling
+  </mat-checkbox>
+  <mat-checkbox class="example-margin" [(ngModel)]="this.request.properties.isLombokEnabled">Lombok
+  </mat-checkbox>
+
+  <br/>
+  <br/>
+  <mat-form-field class="example-form-field">
+    <input matInput type="text" placeholder="Project Name" [(ngModel)]="this.request.properties.name"/>
+  </mat-form-field>
+
+  <mat-form-field class="example-form-field">
+    <input matInput type="text" placeholder="Group ID" [(ngModel)]="this.request.properties.groupId"/>
+  </mat-form-field>
+  <mat-form-field class="example-form-field">
+    <input matInput type="text" placeholder="Artifact ID" [(ngModel)]="this.request.properties.artifactId"/>
+  </mat-form-field>
+  <mat-form-field class="example-form-field">
+    <input matInput type="text" placeholder="Description" [(ngModel)]="this.request.properties.description"/>
+  </mat-form-field>
+
+  <br/>
+  <br/>
+
+  <mat-form-field class="example-form-field">
+    <input matInput type="text" placeholder="Developer's Name" [(ngModel)]="this.request.properties.developerName"/>
+  </mat-form-field>
+
+
+  <mat-form-field class="example-form-field">
+    <input matInput type="text" placeholder="Developer's Email ID"
+           [(ngModel)]="this.request.properties.developerEmailId"/>
+  </mat-form-field>
+
+  <br/>
+  <!--started-
+  <form class="example-form" [formGroup]="controllerForm"
+        (ngSubmit)="submitControllerForm(controllerForm.value)">
+    <mat-form-field class="example-full-width">
+      <input type="text"  matInput placeholder="User Name" formControlName="name" size="20">
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width">
+      <input mdInput placeholder="Docs Comment" formControlName="docsComment"
+             type="text" size="100">
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="warn" >Add Controller</button>
+  </form>
+  <!-- ended -->
+
+  <button mat-raised-button color="warn" (click)="submitRequest()">Generate Project</button>
+</div>
+
+<router-outlet></router-outlet>
