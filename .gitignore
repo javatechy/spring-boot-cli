@@ -1,5 +1,5 @@
 !.mvn/wrapper/maven-wrapper.jar
-
+/backend/codegen_ui/
 /backend/target/
 /backend/.settings/
 /backend/.project
