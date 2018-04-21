@@ -33,3 +33,4 @@ nbdist/
 node_modules/
 
 /package-lock.json
+/codegen_ui/

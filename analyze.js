@@ -6,12 +6,15 @@ var cu = require('./utils/commonUtils.js'); // reading common utils
 var currentExecutingPath = process.cwd();
 var htmlPath = path.resolve(path.join(__dirname, "ui_html",
 		"build_analysis_template.html"));
+var angular = path.resolve(path.join(__dirname, "codegen_ui"));
 var opn = require('opn');
 
 module.exports = {
 
+	
 	analyze : function(loc) {
 
+		cu.runServerDir(angular,8900);
 		cu.debug("Ananlyzing the  jar file => " + loc);
 
 		if (loc.indexOf(currentExecutingPath) >= 0) {

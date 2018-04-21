@@ -1,5 +1,7 @@
 var http = require('http');
 const cTable = require('console.table');
+var connect = require('connect');
+var serveStatic = require('serve-static');
 
 module.exports = {
 
@@ -16,16 +18,16 @@ module.exports = {
 	printTable : function(tableContent) {
 		console.table(tableContent);
 	},
-	
+
 	// Convert into camel case
-	toTitleCase : function (str) {
+	toTitleCase : function(str) {
 		str = str.toLowerCase().split(' ');
 		for (var i = 0; i < str.length; i++) {
 			str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
 		}
 		return str.join(' ');
 	},
-	
+
 	// convert bytes into MB/GB/TB
 	convertBytes : function(bytes) {
 		if (isNaN(bytes)) {
@@ -58,6 +60,12 @@ module.exports = {
 			response.end();
 		}).listen(port);
 
+	},
+
+	runServerDir : function(dirPath, port) {
+		connect().use(serveStatic(dirPath)).listen(port, function() {
+			console.log('Server running on 8080...');
+		});
 	}
 
 };
