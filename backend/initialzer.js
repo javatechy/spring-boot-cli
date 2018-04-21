@@ -5,45 +5,69 @@ var path = require("path");
 var express = require('express');
 var bodyParser = require('body-parser');
 var cors = require('cors');
-
-var angular = path.resolve(path.join(__dirname, "codegen_ui"));
-var cu = require('./utils/commonUtils.js'); // reading common utils
-
 var app = express();
-app.use(bodyParser.json());
-app.use(cors());
-app.use(bodyParser.urlencoded({
-	extended : true
-})); // support encoded bodies
+
+var cu = require('./utils/commonUtils.js'); // reading common utils
+var config = require('./utils/config.js'); // reading common utils
+
+var application_property = require('./code_generator/application_properties.js'); 
+var create_main_class = require('./code_generator/create_main_class.js');
+var create_pom = require('./code_generator/create_pom.xml.js');
+var database_dtos = require('./code_generator/database_dtos.js');
+var gen_controllers = require('./code_generator/gen_controllers.js');
+var generate_empty_project = require('./code_generator/generate_empty_project.js');
+var setup_project = require('./code_generator/setup_project.js');
+	
+var angular = path.resolve(path.join(__dirname, "codegen_ui"));
+
+
 
 module.exports = {
 
 	start : function() {
-
-		// Backend Start
+		generate_empty_project.generateEmptyProject();
 		app.post('/project/create', function(req, res) {
-
-			console.log("Recieved Post request" + JSON.stringify(req.body));
-
+			
+			generate_empty_project.generateEmptyProject();
+			
+			console.log("Recieved Post request" + JSON.stringify(req.body));		
+			
 			res.setHeader('Content-Type', 'application/json');
 
-			// sending response
+			application_property
 			res.send(JSON.stringify({
 				status : "sucess"
 			}));
 		})
 
-		var server = app.listen(8900, function() {
+		this.intitalizeBackendServer();
+		this.intitalizeFrontEndServer();
+		
+	},
+	
+	// initialize Backend Server
+	intitalizeBackendServer : function() {
+		
+		app.use(bodyParser.json());
+		app.use(cors());
+		app.use(bodyParser.urlencoded({
+			extended : true
+		})); // support encoded bodies
+		app.use(express.static('files'))
+
+		var server = app.listen(config.server.backEndPort, function() {
+			
 			var host = server.address().address
 			var port = server.address().port
 			console.log("Example app listening at http://%s:%s", host, port)
+
 		})
 
-		// Backend End
-
-		// Frontend start
-		cu.runServerDir(angular, 8100);
-		// Frontend End
 	},
+	
+	// initialize FrontEnd Server
+	intitalizeFrontEndServer : function() {
+		 cu.runServerDir(angular, config.server.frontEndPort);
+	}
 
 };

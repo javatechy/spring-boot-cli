@@ -3,6 +3,8 @@ const cTable = require('console.table');
 var connect = require('connect');
 var serveStatic = require('serve-static');
 
+var config = require('./config.js');
+
 module.exports = {
 
 	// print a content of a file
@@ -12,7 +14,8 @@ module.exports = {
 
 	// print a content of a file
 	debug : function(string) {
-		// console.log(string);
+		if (config.common.isDebugEnabled)
+			console.log(string);
 	},
 
 	printTable : function(tableContent) {
