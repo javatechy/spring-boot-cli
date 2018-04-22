@@ -38,7 +38,8 @@ var request = {
 		isConstantFile : false,
 		isGlobalExceptionEnabled : false,
 		isLombokEnabled : true,
-		isActuatorEnabled : true
+		isActuatorEnabled : true,
+		applicationPort : 8090
 	},
 	jars : [ {
 		name : '',

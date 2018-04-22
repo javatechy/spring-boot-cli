@@ -30,10 +30,10 @@ module.exports = {
 		app.post('/project/create', function(req, res) {
 			
 			cu.debug('json -----> '  +  JSON.stringify(req.body));
-			
 			body = generate_empty_project.setupFolderStucture(req.body);
 			body = generate_empty_project.createMainApplication(req.body);
 			body = create_pom.createPom(req.body);
+			body =  application_property.generateApplicationProperties(req.body);
 			
 			console.log("Recieved Post request" + JSON.stringify(body));		
 			
