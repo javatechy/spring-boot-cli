@@ -21,27 +21,27 @@ var setup_project = require('./code_generator/setup_project.js');
 var angular = path.resolve(path.join(__dirname, "codegen_ui"));
 
 
-
 module.exports = {
 
 	start : function() {
-		generate_empty_project.generateEmptyProject();
+		
+		this.intitalizeBackendServer();
+		
 		app.post('/project/create', function(req, res) {
 			
-			generate_empty_project.generateEmptyProject();
+			cu.debug('json -----> '  +  JSON.stringify(req.body));
 			
-			console.log("Recieved Post request" + JSON.stringify(req.body));		
+			body = generate_empty_project.setupFolderStucture(req.body);
+			body = generate_empty_project.createMainApplication(req.body);
+			
+			console.log("Recieved Post request" + JSON.stringify(body));		
 			
 			res.setHeader('Content-Type', 'application/json');
 
-			application_property
-			res.send(JSON.stringify({
-				status : "sucess"
-			}));
+			res.send(config.project);
 		})
 
-		this.intitalizeBackendServer();
-		this.intitalizeFrontEndServer();
+		// this.intitalizeFrontEndServer();
 		
 	},
 	

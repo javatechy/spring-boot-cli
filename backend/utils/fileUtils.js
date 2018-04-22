@@ -10,10 +10,23 @@ module.exports = {
 
 	// Creating Directory
 	createDir : function(dirPath) {
-		if (!fs.existsSync(dirPath)) {
-			fs.mkdirSync(dirPath);
-		}
+		console.log("\n\nCreating dir " +  dirPath);
+		dirPath = pathLib.normalize(dirPath).split(pathLib.sep);
+		dirPath.forEach((sdir,index)=>{
+	        var pathInQuestion = dirPath.slice(0,index+1).join(pathLib.sep);
+	        if((!this.isDir(pathInQuestion)) && pathInQuestion) fs.mkdirSync(pathInQuestion);
+	    });
+
 	},
+	
+	isDir : function(dpath) {
+	    try {
+	        return fs.lstatSync(dpath).isDirectory();
+	    } catch(e) {
+	        return false;
+	    }
+	},
+	
 
 	// Read a file Content
 	readFileContent : function(filePath) {
@@ -49,7 +62,28 @@ module.exports = {
 	// get file extension
 	getFileExtension : function(path) {
 		var extName = pathLib.extname(path);
-		return extName.replace(".","").toUpperCase();
-		
+		return extName.replace(".", "").toUpperCase();
+
+	},
+
+	// replace json key value in content
+	replaceFromJson : function(content, obj) {
+		console.log(" i am clalded " + content);
+		for ( var key in obj) {
+			if (obj.hasOwnProperty(key)) {
+				var property = obj[key];
+				console.log(key + "|" + obj[key]);
+				content = content.replace("${" + key + "}", property);
+			}
+		}
+		return content;
+	},
+	
+	// Read a file Content
+	readTemplate : function(fileName) {
+		var fileCont = pathLib.resolve(pathLib.join("./templates",
+		fileName));
+		return fs.readFileSync(fileCont) + '';
 	}
+
 };

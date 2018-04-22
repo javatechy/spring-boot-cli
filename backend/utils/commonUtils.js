@@ -11,11 +11,15 @@ module.exports = {
 	print : function(string) {
 		console.log(string);
 	},
+	
+	debug : function(string, jsonObject) {
+		console.log("\n\n" +string + " " + JSON.stringify(jsonObject));
+	},
 
 	// print a content of a file
 	debug : function(string) {
 		if (config.common.isDebugEnabled)
-			console.log(string);
+			console.log("\n\n" + string);
 	},
 
 	printTable : function(tableContent) {
@@ -23,7 +27,7 @@ module.exports = {
 	},
 
 	// Convert into camel case
-	toTitleCase : function(str) {
+	toCamelCase : function(str) {
 		str = str.toLowerCase().split(' ');
 		for (var i = 0; i < str.length; i++) {
 			str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
@@ -70,5 +74,6 @@ module.exports = {
 			console.log('Server running on 8080...');
 		});
 	}
+	
 
 };
