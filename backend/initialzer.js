@@ -12,7 +12,7 @@ var config = require('./utils/config.js'); // reading common utils
 
 var application_property = require('./code_generator/application_properties.js'); 
 var create_main_class = require('./code_generator/create_main_class.js');
-var create_pom = require('./code_generator/create_pom.xml.js');
+var create_pom = require('./code_generator/create_pom.js');
 var database_dtos = require('./code_generator/database_dtos.js');
 var gen_controllers = require('./code_generator/gen_controllers.js');
 var generate_empty_project = require('./code_generator/generate_empty_project.js');
@@ -33,6 +33,7 @@ module.exports = {
 			
 			body = generate_empty_project.setupFolderStucture(req.body);
 			body = generate_empty_project.createMainApplication(req.body);
+			body = create_pom.createPom(req.body);
 			
 			console.log("Recieved Post request" + JSON.stringify(body));		
 			

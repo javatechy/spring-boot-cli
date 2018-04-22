@@ -45,7 +45,11 @@ module.exports = {
 
 	// Replace a template string by another string
 	replace : function(content, key, value) {
-		return content.replace("${" + key + "}", value);
+		key = "${" + key + "}";
+	    while(content.indexOf(key) != -1) {
+	    	content = content.replace(key, value);
+	    }
+	    return content;
 	},
 
 	// Get the file size
@@ -68,22 +72,20 @@ module.exports = {
 
 	// replace json key value in content
 	replaceFromJson : function(content, obj) {
-		console.log(" i am clalded " + content);
 		for ( var key in obj) {
 			if (obj.hasOwnProperty(key)) {
 				var property = obj[key];
-				console.log(key + "|" + obj[key]);
-				content = content.replace("${" + key + "}", property);
+				content = this.replace(content, key , property);
 			}
 		}
 		return content;
 	},
 	
-	// Read a file Content
-	readTemplate : function(fileName) {
+	// Read a file Content and replace all dynamic param from it.
+	readTemplate : function(fileName,obj) {
 		var fileCont = pathLib.resolve(pathLib.join("./templates",
 		fileName));
-		return fs.readFileSync(fileCont) + '';
+		return this.replaceFromJson(fs.readFileSync(fileCont) + '', obj);
 	}
 
 };

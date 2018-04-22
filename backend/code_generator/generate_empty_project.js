@@ -5,6 +5,9 @@ var config = require('../utils/config.js');
 
 module.exports = {
 
+	/**
+	 * Setup basic file structure.
+	 */
 	setupFolderStucture : function(request) {
 
 		config.project.javaCodeLoc = this.getJavaCodeLoc(request);
@@ -17,28 +20,31 @@ module.exports = {
 		fu.createDir(config.project.javaCodeLoc + "/exception");
 		fu.createDir(config.project.javaCodeLoc + "/dao");
 		fu.createDir(config.project.javaCodeLoc + "/entity");
-
-		cu.debug("After changing applicaiton name --> "
-				+ fu.readTemplate("DemoApplication.java"));
-
 		return request;
 	},
 
+	/**
+	 * Create MainApplication.java in src/main/java/group/artifact
+	 */
 	createMainApplication : function(request) {
-		cu.debug("Debug mode ");
-
-		var applicationName = cu.toCamelCase(request.properties.groupId)
+		var applicationClassName = cu.toCamelCase(request.properties.groupId)
 				+ "Application";
+		request.properties.applicationClassName = applicationClassName;
+		cu.debug("After changing applicaiton name --> "
+				+ fu.readTemplate("DemoApplication.java", request.properties));
 
-		cu.debug("Debug applicationName " + applicationName);
+		var mainFileContent = fu.readTemplate("DemoApplication.java",
+				request.properties);
 
-		config.project.applicationName = applicationName;
-
-		cu.debug("After changing applicaiton name "
-				+ JSON.stringify(config.project));
+		fu.writeDataInFile(config.project.javaCodeLoc + "/"
+				+ request.properties.applicationClassName + ".java",
+				mainFileContent);
 		return request;
 	},
 
+	/**
+	 * find java code location
+	 */
 	getJavaCodeLoc : function(request) {
 		return (config.project.srcMainJavaLoc + "/"
 				+ request.properties.artifactId + "/" + request.properties.groupId)
