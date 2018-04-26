@@ -1,7 +1,7 @@
 // for spring boot project configuration
 
-//var currentLoc = __dirname;
-var currentLoc = "/Users/deepak/Desktop/project";
+var currentLoc = __dirname;
+//var currentLoc = "/Users/deepak/Desktop/project";
 
 var project = {
 	projectLocation : currentLoc,

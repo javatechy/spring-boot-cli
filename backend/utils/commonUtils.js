@@ -71,7 +71,7 @@ module.exports = {
 
 	runServerDir : function(dirPath, port) {
 		connect().use(serveStatic(dirPath)).listen(port, function() {
-			console.log('Server running on 8080...');
+			console.log('front end running  at ' + port);
 		});
 	}
 	
