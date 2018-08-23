@@ -35,10 +35,10 @@ module.exports = {
 			body = create_pom.createPom(req.body);
 			body =  application_property.generateApplicationProperties(req.body);
 			
+			
 			console.log("Recieved Post request" + JSON.stringify(body));		
 			
 			res.setHeader('Content-Type', 'application/json');
-
 			res.send(config.project);
 		})
 

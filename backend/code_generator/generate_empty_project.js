@@ -15,11 +15,14 @@ module.exports = {
 		fu.createDir(config.project.srcMainJavaLoc);
 		fu.createDir(config.project.resourceLoc);
 		fu.createDir(config.project.javaCodeLoc);
+		fu.createDir(config.project.srcMainDockerLoc);
 		fu.createDir(config.project.javaCodeLoc + "/service/impl");
 		fu.createDir(config.project.javaCodeLoc + "/controller");
 		fu.createDir(config.project.javaCodeLoc + "/exception");
 		fu.createDir(config.project.javaCodeLoc + "/dao");
 		fu.createDir(config.project.javaCodeLoc + "/entity");
+		
+		cu.debug("Creating project on at locaton : "+config.project.javaCodeLoc);
 		return request;
 	},
 

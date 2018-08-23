@@ -1,7 +1,7 @@
 // for spring boot project configuration
 
-var currentLoc = __dirname;
-//var currentLoc = "/Users/deepak/Desktop/project";
+//var currentLoc = __dirname;
+var currentLoc = "/Users/deepak/Desktop/sboot_project";
 
 var project = {
 	projectLocation : currentLoc,
@@ -10,6 +10,7 @@ var project = {
 	controllerClassLocation : "template/TemplateController.java",
 	srcMainJavaLoc : currentLoc + "/src/main/java",
 	resourceLoc : currentLoc + "/src/main/resources",
+	srcMainDockerLoc : currentLoc + "/src/main/docker",
 	applicationProp : "template/application.properties",
 	javaCodeLoc : ""
 }
